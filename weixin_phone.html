@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>微信小手机</title>
+  <style>
+    body {
+      background-color: #d3e0dc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: "Helvetica Neue", sans-serif;
+    }
+
+    .phone {
+      width: 375px;
+      height: 667px;
+      border: 12px solid #333;
+      border-radius: 40px;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .header {
+      background-color: #ededed;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      max-width: 70%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .from-me {
+      background-color: #9fe658;
+      align-self: flex-end;
+    }
+
+    .from-them {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      align-self: flex-start;
+    }
+
+    .footer {
+      display: flex;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    .input-box {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .send-btn {
+      padding: 0 14px;
+      background-color: #07c160;
+      color: white;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="header">微信</div>
+    <div class="chat" id="chat">
+      <div class="message from-them">你好呀！</div>
+      <div class="message from-me">你好，在干嘛？</div>
+    </div>
+    <div class="footer">
+      <input class="input-box" type="text" id="input" placeholder="输入消息..." />
+      <button class="send-btn" onclick="sendMessage()">发送</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("input");
+      const message = input.value.trim();
+      if (message !== "") {
+        const chat = document.getElementById("chat");
+        const msgDiv = document.createElement("div");
+        msgDiv.className = "message from-me";
+        msgDiv.textContent = message;
+        chat.appendChild(msgDiv);
+        input.value = "";
+        chat.scrollTop = chat.scrollHeight;
+      }
+    }
+  </script>
+</body>
+</html>
